@@ -1,8 +1,8 @@
 /**
  * TODO: Add file header
- * Name:
- * ID:
- * Email:
+ * Name: Joshua Yang
+ * ID: A16667394
+ * Email: jwyang@ucsd.edu
  * File description: 
  */
 
@@ -106,6 +106,9 @@ public class CSE12NaryTree<E extends Comparable<E>> {
      */
     public void add(E element) {
         //TODO
+        if (element == null) {
+            throw new NullPointerException();
+        }
     }
 
     /**
@@ -113,6 +116,9 @@ public class CSE12NaryTree<E extends Comparable<E>> {
      */
     public boolean contains(E element) {
         //TODO
+        if (element == null) {
+            throw new NullPointerException();
+        }
         return false;
     }
 
