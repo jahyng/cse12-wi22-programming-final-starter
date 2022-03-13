@@ -102,13 +102,39 @@ public class CSE12NaryTree<E extends Comparable<E>> {
     }
 
     /**
-     * TODO: Add method header
+     * This method adds a node to the n-ary tree in level order and updates size
+     * Use a queue for the level order traversal.
+     * @param element element of the node to be added  
      */
     public void add(E element) {
-        //TODO
+        // create the queue
         if (element == null) {
             throw new NullPointerException();
         }
+        Queue<Node> Q = new LinkedList<>();
+        Q.offer(this.root);
+        while (!Q.isEmpty()) {
+            // int QSize = Q.size();
+            List<E> level = new ArrayList<>();
+            for (int i = 0; i < Q.size(); i++) {
+                Node curr = Q.poll();
+                level.add(curr.getData());
+
+                for (int j = 0; j < curr.getNumChildren(); j++) {
+                    Node child = curr.getChildren().get(j);
+                    Q.add(child);
+                }
+            }
+        }
+        for (int i = 0; i < Q.size(); i++) {
+            Node curr = Q.poll();
+            if (curr.getNumChildren() < this.N) {
+                curr.addChild(new Node(element));
+                return;
+            }
+        }
+        
+
     }
 
     /**
