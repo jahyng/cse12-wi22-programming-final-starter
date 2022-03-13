@@ -194,8 +194,6 @@ public class CSE12NaryTree<E extends Comparable<E>> {
                 PQ.add(curr.getChildren().get(i).getData());
             }
         }
-        // sort the priority queue
-
         // put nodes into ArrayList
         while (!PQ.isEmpty()) {
             res.add(PQ.poll());

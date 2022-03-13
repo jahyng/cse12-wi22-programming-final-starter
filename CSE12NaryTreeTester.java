@@ -8,6 +8,8 @@
  
 import static org.junit.Assert.*;
 import org.junit.*;
+
+import java.lang.module.FindException;
 import java.util.*;
 /**
  * TODO: Add class header
@@ -34,7 +36,7 @@ public class CSE12NaryTreeTester {
         fiveNaryTree.root.addChild(child3);
         fiveNaryTree.root.addChild(child4);
         fiveNaryTree.root.addChild(child5);
-        fiveNaryTree.size = 5;
+        fiveNaryTree.size = 6;
         // check that nodes have been added properly
         assertEquals((Integer)0, fiveNaryTree.root.getData());
         assertEquals((Integer)1, fiveNaryTree.root.getChildren().get(0).
@@ -49,13 +51,13 @@ public class CSE12NaryTreeTester {
             getData());
             
         fiveNaryTree.add(99);
-        assertEquals(6, fiveNaryTree.size);
+        assertEquals(7, fiveNaryTree.size);
         assertEquals((Integer)99, child1.getChildren().get(0).getData());
         fiveNaryTree.add(100);
-        assertEquals(7, fiveNaryTree.size);
+        assertEquals(8, fiveNaryTree.size);
         assertEquals((Integer)100, child1.getChildren().get(1).getData());
         fiveNaryTree.add(200);
-        assertEquals(8, fiveNaryTree.size);
+        assertEquals(9, fiveNaryTree.size);
         assertEquals((Integer)200,child1.getChildren().get(2).getData());
     }
 
@@ -80,6 +82,7 @@ public class CSE12NaryTreeTester {
         fiveNaryTree.root.addChild(child3);
         fiveNaryTree.root.addChild(child4);
         fiveNaryTree.root.addChild(child5);
+        fiveNaryTree.size = 6;
         // check that nodes have been added properly
         assertEquals((Integer)0, fiveNaryTree.root.getData());
         assertEquals((Integer)1, fiveNaryTree.root.getChildren().get(0).
@@ -112,10 +115,31 @@ public class CSE12NaryTreeTester {
     }
 
     /**
-     * TODO: Add test case description
+     * 
      */
     @Test
     public void testCustom(){
-        
+        CSE12NaryTree<Integer> fiveNaryTree = new CSE12NaryTree<Integer>(5);
+        // create the nodes
+        CSE12NaryTree<Integer>.Node rootNode = fiveNaryTree. new Node(6);
+        CSE12NaryTree<Integer>.Node child1 = fiveNaryTree. new Node(14);
+        CSE12NaryTree<Integer>.Node child2 = fiveNaryTree. new Node(4);
+        CSE12NaryTree<Integer>.Node child3 = fiveNaryTree. new Node(3);
+        CSE12NaryTree<Integer>.Node child4 = fiveNaryTree. new Node(90);
+        CSE12NaryTree<Integer>.Node child5 = fiveNaryTree. new Node(64);
+        // put nodes into tree
+        fiveNaryTree.root = rootNode;
+        fiveNaryTree.root.addChild(child1);;
+        fiveNaryTree.root.addChild(child2);
+        fiveNaryTree.root.addChild(child3);
+        fiveNaryTree.root.addChild(child4);
+        fiveNaryTree.root.addChild(child5);
+        fiveNaryTree.size = 6;
+        assertEquals(6, fiveNaryTree.size);
+        // check that nodes have been added properly
+        ArrayList<Integer> l = fiveNaryTree.sortTree();
+        for (int i = 0; i < 6; i++) {
+            System.out.println(l.get(i));
+        }
     }
 }
