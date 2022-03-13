@@ -168,6 +168,8 @@ public class CSE12NaryTree<E extends Comparable<E>> {
      */
     public ArrayList<E> sortTree(){
         ArrayList<E> res = new ArrayList<>();
+        Queue<Node> temp = new LinkedList<>();
+        PriorityQueue<Node> PQ = new PriorityQueue<>();
         if (this.size == 0) {
             return res;
         }

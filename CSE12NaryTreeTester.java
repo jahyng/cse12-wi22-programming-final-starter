@@ -1,8 +1,8 @@
 /**
  * TODO: Add file header
- * Name:
- * ID:
- * Email:
+ * Name: Josh Yang
+ * ID: A16667394
+ * Email: jwyang@ucsd.edu
  * File description: 
  */
  
@@ -23,7 +23,7 @@ public class CSE12NaryTreeTester {
         fiveNaryTree = new CSE12NaryTree<>(5);
         fiveNaryTree.root.setData(1);
         List<Integer> childList = Arrays.asList(2,3,4,5,6);
-        // CSE12NaryTree<Integer>.Node child1 = new CSE12NaryTree.Node(2);
+        fiveNaryTree.Node child1 = new Node(2);
         // CSE12NaryTree<Integer>.Node child2 = new CSE12NaryTree.Node(3);
         // CSE12NaryTree<Integer>.Node child3 = new CSE12NaryTree.Node(4);
         // CSE12NaryTree<Integer>.Node child4 = new CSE12NaryTree.Node(5);
