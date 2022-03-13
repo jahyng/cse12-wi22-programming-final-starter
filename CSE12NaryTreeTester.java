@@ -28,7 +28,8 @@ public class CSE12NaryTreeTester {
     }
 
     /**
-     * TODO: Add test case description
+     * Tests contains method on 5-ary tree with root and all children when \
+     * element is not there
      */
     @Test
     public void testContains(){
