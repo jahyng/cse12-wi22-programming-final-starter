@@ -149,16 +149,14 @@ public class CSE12NaryTree<E extends Comparable<E>> {
         Queue<Node> treeList = new LinkedList<>();
         treeList.add(this.root);
         while (!treeList.isEmpty()) {
-            List<Node> level = new ArrayList<>();
-            for (int i = 0; i < treeList.size(); i++) {
-                Node curr = treeList.poll();
-
+            Node curr = treeList.poll();
+            if (curr.getData() == element) return true;
+            else {
                 for (int j = 0; j < curr.getNumChildren(); j++) {
                     Node child = curr.getChildren().get(j);
                     treeList.add(child);
                 }
             }
-            
         }
         return false;
     }
