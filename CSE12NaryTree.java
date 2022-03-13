@@ -12,8 +12,6 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import javax.management.QueryEval;
-
 /**
  * TODO: Add class header
  */
@@ -126,6 +124,7 @@ public class CSE12NaryTree<E extends Comparable<E>> {
                 curr.addChild(new Node(element));
                 return;
             } 
+
             // there is no open child space for current node
             else {
                 for (int j = 0; j < curr.getNumChildren(); j++) {
@@ -136,17 +135,6 @@ public class CSE12NaryTree<E extends Comparable<E>> {
             }
             
         }
-
-
-        for (int i = 0; i < queue.size(); i++) {
-            Node curr = queue.poll();
-            if (curr.getNumChildren() < this.N) {
-                curr.addChild(new Node(element));
-                return;
-            }
-        }
-        
-
     }
 
     /**
