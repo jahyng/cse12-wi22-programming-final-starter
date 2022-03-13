@@ -1,5 +1,4 @@
 /**
- * TODO: Add file header
  * Name: Joshua Yang
  * ID: A16667394
  * Email: jwyang@ucsd.edu
@@ -111,28 +110,36 @@ public class CSE12NaryTree<E extends Comparable<E>> {
         if (element == null) {
             throw new NullPointerException();
         }
+
+        // empty tree case
+        if (this.size == 0) {
+            this.root = new Node(element);
+        }
         // create queue and add the root node
         Queue<Node> queue = new LinkedList<>();
-        queue.add(this.root);
+        queue.offer(this.root);
         // look for the node with an empty child space
         while (!queue.isEmpty()) {
             // pull node from queue
-            Node curr = queue.poll();
-
+            
+            int len = queue.size();
             // there is open child space, add and terminate
+            for (int i = 0; i < len; i++) {
+                Node curr = queue.poll();
             if (curr.getNumChildren() < this.N) {
                 curr.addChild(new Node(element));
+                this.size++;
                 return;
             } 
 
             // there is no open child space for current node
             else {
-                for (int j = 0; j < curr.getNumChildren(); j++) {
+                for (Node child : curr.getChildren()) {
                     // add children to queue to be checked for open child space
-                    Node child = curr.getChildren().get(j);
                     queue.add(child);
                 }
             }
+        }
             
         }
     }
@@ -169,23 +176,31 @@ public class CSE12NaryTree<E extends Comparable<E>> {
     public ArrayList<E> sortTree(){
         ArrayList<E> res = new ArrayList<>();
         Queue<Node> temp = new LinkedList<>();
-        PriorityQueue<Node> PQ = new PriorityQueue<>();
+        PriorityQueue<E> PQ =  new PriorityQueue<>();
         if (this.size == 0) {
             return res;
         }
         Node curr = this.root;
-        PQ.add(this.root);
+        PQ.add(this.root.getData());
         temp.add(this.root);
-        while (!PQ.isEmpty()) {
+
+        // put all the nodes in the priority queue
+        while (!temp.isEmpty()) {
             curr = temp.poll();
             if (curr.getNumChildren() == 0) break;
 
             for (int i = 0; i < curr.getNumChildren(); i++) {
                 temp.add(curr.getChildren().get(i));
-                PQ.add(curr.getChildren().get(i));
+                PQ.add(curr.getChildren().get(i).getData());
             }
         }
-            
+        // sort the priority queue
+
+        // put nodes into ArrayList
+        while (!PQ.isEmpty()) {
+            res.add(PQ.poll());
+        }
         return res;
     }
+
 }
