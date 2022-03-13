@@ -173,6 +173,19 @@ public class CSE12NaryTree<E extends Comparable<E>> {
         if (this.size == 0) {
             return res;
         }
+        Node curr = this.root;
+        PQ.add(this.root);
+        temp.add(this.root);
+        while (!PQ.isEmpty()) {
+            curr = temp.poll();
+            if (curr.getNumChildren() == 0) break;
+
+            for (int i = 0; i < curr.getNumChildren(); i++) {
+                temp.add(curr.getChildren().get(i));
+                PQ.add(curr.getChildren().get(i));
+            }
+        }
+            
         return res;
     }
 }
