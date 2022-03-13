@@ -1,18 +1,16 @@
 /**
- * TODO: Add file header
  * Name: Josh Yang
  * ID: A16667394
  * Email: jwyang@ucsd.edu
- * File description: 
+ * File description: This file contains the tester for CSE12NaryTree.java file.
  */
  
 import static org.junit.Assert.*;
 import org.junit.*;
-
-import java.lang.module.FindException;
 import java.util.*;
 /**
- * TODO: Add class header
+ * This class contains tests for the implementation of add, contains, and 
+ * sortTree methods for the CSE12NaryTree. 
  */
 public class CSE12NaryTreeTester {
 
@@ -115,31 +113,71 @@ public class CSE12NaryTreeTester {
     }
 
     /**
-     * 
+     * This custom test is different because the other trees had n of 5 and had 
+     * only one level. This tree's N value is 3 and has levesl 0, 1, and 2. The 
+     * other sort tester only had one node, so the sorting aspect of the method
+     * was not tested. The values on this tree are also scrambled, so the 
+     * sorting aspect of the method will also be tested. 
      */
     @Test
     public void testCustom(){
-        CSE12NaryTree<Integer> fiveNaryTree = new CSE12NaryTree<Integer>(5);
+        CSE12NaryTree<Integer> threeNaryTree = new CSE12NaryTree<Integer>(3);
         // create the nodes
-        CSE12NaryTree<Integer>.Node rootNode = fiveNaryTree. new Node(6);
-        CSE12NaryTree<Integer>.Node child1 = fiveNaryTree. new Node(14);
-        CSE12NaryTree<Integer>.Node child2 = fiveNaryTree. new Node(4);
-        CSE12NaryTree<Integer>.Node child3 = fiveNaryTree. new Node(3);
-        CSE12NaryTree<Integer>.Node child4 = fiveNaryTree. new Node(90);
-        CSE12NaryTree<Integer>.Node child5 = fiveNaryTree. new Node(64);
+        CSE12NaryTree<Integer>.Node rootNode = threeNaryTree. new Node(6);
+        CSE12NaryTree<Integer>.Node child1 = threeNaryTree. new Node(14);
+        CSE12NaryTree<Integer>.Node child2 = threeNaryTree. new Node(4);
+        CSE12NaryTree<Integer>.Node child3 = threeNaryTree. new Node(3);
+        CSE12NaryTree<Integer>.Node child4 = threeNaryTree. new Node(90);
+        CSE12NaryTree<Integer>.Node child5 = threeNaryTree. new Node(64);
         // put nodes into tree
-        fiveNaryTree.root = rootNode;
-        fiveNaryTree.root.addChild(child1);;
-        fiveNaryTree.root.addChild(child2);
-        fiveNaryTree.root.addChild(child3);
-        fiveNaryTree.root.addChild(child4);
-        fiveNaryTree.root.addChild(child5);
-        fiveNaryTree.size = 6;
-        assertEquals(6, fiveNaryTree.size);
+        threeNaryTree.root = rootNode;
+        threeNaryTree.root.addChild(child1);;
+        threeNaryTree.root.addChild(child2);
+        threeNaryTree.root.addChild(child3);
+        threeNaryTree.root.addChild(child4);
+        threeNaryTree.root.addChild(child5);
+        threeNaryTree.size = 6;
         // check that nodes have been added properly
-        ArrayList<Integer> l = fiveNaryTree.sortTree();
+        ArrayList<Integer> output = threeNaryTree.sortTree();
+        ArrayList<Integer> expectedOutput = new ArrayList<>(6);
+        expectedOutput.add(3);
+        expectedOutput.add(4);
+        expectedOutput.add(6);
+        expectedOutput.add(14);
+        expectedOutput.add(64);
+        expectedOutput.add(90);
         for (int i = 0; i < 6; i++) {
-            System.out.println(l.get(i));
+            assertEquals(expectedOutput.get(i), output.get(i));
         }
+    }
+
+    /**
+     * Tests contains method when there are multiple levels and element we're 
+     * looking for exists and doesn't exist
+     */
+    @Test
+    public void testContainsCustom() {
+        CSE12NaryTree<Integer> threeNaryTree = new CSE12NaryTree<Integer>(3);
+        // create the nodes
+        CSE12NaryTree<Integer>.Node rootNode = threeNaryTree. new Node(6);
+        CSE12NaryTree<Integer>.Node child1 = threeNaryTree. new Node(14);
+        CSE12NaryTree<Integer>.Node child2 = threeNaryTree. new Node(4);
+        CSE12NaryTree<Integer>.Node child3 = threeNaryTree. new Node(3);
+        CSE12NaryTree<Integer>.Node child4 = threeNaryTree. new Node(90);
+        CSE12NaryTree<Integer>.Node child5 = threeNaryTree. new Node(64);
+        // put nodes into tree
+        threeNaryTree.root = rootNode;
+        threeNaryTree.root.addChild(child1);;
+        threeNaryTree.root.addChild(child2);
+        threeNaryTree.root.addChild(child3);
+        threeNaryTree.root.addChild(child4);
+        threeNaryTree.root.addChild(child5);
+        assertTrue(threeNaryTree.contains(90));
+        assertFalse(threeNaryTree.contains(100));
+        assertTrue(threeNaryTree.contains(64));
+        assertTrue(threeNaryTree.contains(6));
+        assertTrue(threeNaryTree.contains(14));
+        assertTrue(threeNaryTree.contains(4));
+        assertTrue(threeNaryTree.contains(3));
     }
 }

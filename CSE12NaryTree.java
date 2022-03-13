@@ -2,7 +2,8 @@
  * Name: Joshua Yang
  * ID: A16667394
  * Email: jwyang@ucsd.edu
- * File description: 
+ * File description: This file contains the CSE12NaryTree class and the inner 
+ * class Node. 
  */
 
 import java.util.List;
@@ -12,7 +13,10 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
- * TODO: Add class header
+ * This class implements a Nary tree. It has inner class node, which implements
+ * the nodes of the tree. It has variables root which is the root node of the 
+ * tree, size whcih gives the number of nodes in the tree, and N which gives 
+ * the maximum amount of chilren each node is able to have.
  */
 public class CSE12NaryTree<E extends Comparable<E>> {
     
@@ -157,7 +161,10 @@ public class CSE12NaryTree<E extends Comparable<E>> {
         treeList.add(this.root);
         while (!treeList.isEmpty()) {
             Node curr = treeList.poll();
+            // found node
             if (curr.getData() == element) return true;
+
+            // add the children to the queue to be checked later
             else {
                 for (int j = 0; j < curr.getNumChildren(); j++) {
                     Node child = curr.getChildren().get(j);
@@ -165,6 +172,7 @@ public class CSE12NaryTree<E extends Comparable<E>> {
                 }
             }
         }
+        // did not find node
         return false;
     }
 
@@ -174,12 +182,14 @@ public class CSE12NaryTree<E extends Comparable<E>> {
      * If the tree is empty, the ArrayList should be empty, not null
      */
     public ArrayList<E> sortTree(){
-        ArrayList<E> res = new ArrayList<>();
+        ArrayList<E> result = new ArrayList<>();
         Queue<Node> temp = new LinkedList<>();
         PriorityQueue<E> PQ =  new PriorityQueue<>();
+        // empty tree case
         if (this.size == 0) {
-            return res;
+            return result;
         }
+
         Node curr = this.root;
         PQ.add(this.root.getData());
         temp.add(this.root);
@@ -196,9 +206,9 @@ public class CSE12NaryTree<E extends Comparable<E>> {
         }
         // put nodes into ArrayList
         while (!PQ.isEmpty()) {
-            res.add(PQ.poll());
+            result.add(PQ.poll());
         }
-        return res;
+        return result;
     }
 
 }
